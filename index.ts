@@ -18,6 +18,7 @@ client.on("ready", () => {
     app.listen(process.env.PORT || 10000, () => {
         console.log("server is on")
     })
+    client.editStatus("dnd")
     client.setGlobalCommands(
         new SlashCommandBuilder()
             .setName("ping")
