@@ -1,5 +1,4 @@
-import { SlashCommandInteraction } from "../DiscordApiWrapper/classes/Interaction"
-import SlashCommandBuilder from "../DiscordApiWrapper/classes/SlashCommandBuilder"
+import { SlashCommandBuilder, SlashCommandInteraction } from "../DiscordApiWrapper/types"
 import CustomClient from "./CustomClient"
 
 export default class Command {

@@ -1,4 +1,4 @@
-import { SlashCommandInteraction } from "../DiscordApiWrapper/classes/Interaction";
+import { SlashCommandInteraction } from "../DiscordApiWrapper/types";
 import CustomClient from "../classes/CustomClient";
 import Event from "../classes/Event";
 

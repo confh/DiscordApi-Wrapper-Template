@@ -1,5 +1,4 @@
-import EmbedBuilder from "../DiscordApiWrapper/classes/EmbedBuilder";
-import SlashCommandBuilder from "../DiscordApiWrapper/classes/SlashCommandBuilder";
+import { SlashCommandBuilder, EmbedBuilder } from "../DiscordApiWrapper/types";
 import Command from "../classes/Command";
 
 module.exports = new Command({

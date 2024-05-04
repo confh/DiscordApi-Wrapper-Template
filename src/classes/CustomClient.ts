@@ -1,4 +1,4 @@
-import Client from "../DiscordApiWrapper/Client";
+import Client from "../DiscordApiWrapper/Client"
 import Command from "./Command"
 import path from "node:path"
 import fs from "node:fs"
