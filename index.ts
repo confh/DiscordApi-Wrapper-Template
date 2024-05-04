@@ -3,6 +3,8 @@ import EmbedBuilder from "./DiscordApiWrapper/classes/EmbedBuilder";
 import { SlashCommandInteraction } from "./DiscordApiWrapper/classes/Interaction";
 import SlashCommandBuilder from "./DiscordApiWrapper/classes/SlashCommandBuilder";
 require('dotenv').config()
+import express from "express"
+const app = express()
 
 const client = new Client(process.env.TOKEN as string, {
     cacheAllUsers: true
@@ -10,6 +12,12 @@ const client = new Client(process.env.TOKEN as string, {
 
 client.on("ready", () => {
     console.log("ready")
+    app.get("/", (req, res) => {
+        res.send("Bot is online")
+    })
+    app.listen(process.env.PORT || 3000, () => {
+        console.log("server is on")
+    })
     client.setGlobalCommands(
         new SlashCommandBuilder()
             .setName("ping")
