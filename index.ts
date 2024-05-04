@@ -1,7 +1,5 @@
 import CustomClient from "./classes/CustomClient";
 require('dotenv').config()
-import express from "express"
-const app = express()
 import path from "node:path"
 import fs from "node:fs"
 import Event from "./classes/Event"
