@@ -1,0 +1,3 @@
+[submodule "DiscordApiWrapper"]
+	path = DiscordApiWrapper
+	url = git@github.com:confh/DiscordApiWrapper.git
