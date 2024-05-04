@@ -2,6 +2,8 @@ import Client from "../DiscordApiWrapper/Client";
 import Command from "./Command"
 import path from "node:path"
 import fs from "node:fs"
+import express from "express"
+const app = express()
 
 export default class CustomClient extends Client {
     private rest_commands: any[] = []
@@ -12,6 +14,15 @@ export default class CustomClient extends Client {
             error: 15548997,
             success: 5763719
         }
+    }
+
+    async deployWebsite() {
+        app.get("/", (req, res) => {
+            res.send("Bot is online")
+        })
+        app.listen(process.env.PORT || 10000, () => {
+            this.logger.info(`Server started! Listening on port ${process.env.PORT || 10000}.`)
+        })
     }
 
     /**

@@ -4,11 +4,14 @@ import path from "node:path"
 import fs from "node:fs"
 import Event from "./classes/Event"
 import { Intents } from "./DiscordApiWrapper/Client";
+const logger = require("./logger")
 
 const client = new CustomClient(process.env.TOKEN as string, {
     cacheAllUsers: true,
     intents: [Intents.ALL]
 })
+
+client.setDefaultLogger(logger)
 
 const eventPath = path.join(__dirname, "events")
 const eventFiles = fs.readdirSync(eventPath).filter((file: string) => file.endsWith('.ts'));
