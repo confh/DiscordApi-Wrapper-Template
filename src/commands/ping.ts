@@ -17,10 +17,10 @@ module.exports = new Command({
                 text: client.user.displayName as string,
                 icon_url: client.user.getAvatarURL({ size: 1024 })
             })
+            .setColor(client.config.colors.normal)
             .setTimestamp()
 
         await interaction.reply({
-            content: "",
             embeds: [embed],
         })
     },
