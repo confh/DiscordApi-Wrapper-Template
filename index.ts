@@ -15,7 +15,7 @@ client.on("ready", () => {
     app.get("/", (req, res) => {
         res.send("Bot is online")
     })
-    app.listen(process.env.PORT || 3000, () => {
+    app.listen(process.env.PORT || 10000, () => {
         console.log("server is on")
     })
     client.setGlobalCommands(
