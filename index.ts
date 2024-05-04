@@ -1,53 +1,41 @@
-import Client from "./DiscordApiWrapper/Client";
-import EmbedBuilder from "./DiscordApiWrapper/classes/EmbedBuilder";
-import { SlashCommandInteraction } from "./DiscordApiWrapper/classes/Interaction";
-import SlashCommandBuilder from "./DiscordApiWrapper/classes/SlashCommandBuilder";
+import CustomClient from "./classes/CustomClient";
 require('dotenv').config()
 import express from "express"
 const app = express()
+import path from "node:path"
+import fs from "node:fs"
+import Event from "./classes/Event"
+import { Intents } from "./DiscordApiWrapper/Client";
 
-const client = new Client(process.env.TOKEN as string, {
-    cacheAllUsers: true
+const client = new CustomClient(process.env.TOKEN as string, {
+    cacheAllUsers: true,
+    intents: [Intents.ALL]
 })
 
-client.on("ready", () => {
-    console.log("ready")
-    app.get("/", (req, res) => {
-        res.send("Bot is online")
-    })
-    app.listen(process.env.PORT || 10000, () => {
-        console.log("server is on")
-    })
-    client.editStatus("dnd")
-    client.setGlobalCommands(
-        new SlashCommandBuilder()
-            .setName("ping")
-            .setDescription("Ping the bot.")
-    )
-})
+const eventPath = path.join(__dirname, "events")
+const eventFiles = fs.readdirSync(eventPath).filter((file: string) => file.endsWith('.ts'));
 
-client.on("interactionCreate", async (i) => {
-    if (i instanceof SlashCommandInteraction) {
-        if (i.name === "ping") {
-            const msg = await i.channel.send("Calculating ping...")
-            const ping = Math.abs(msg.timestamp - Date.now())
-            await msg.delete()
-
-            const embed = new EmbedBuilder()
-                .setTitle("Poing")
-                .setDescription(`**Ping:** ${ping}ms`)
-                .setFooter({
-                    text: client.user.displayName as string,
-                    icon_url: client.user.getAvatarURL({ size: 1024 })
-                })
-                .setTimestamp()
-
-            await i.reply({
-                content: "",
-                embeds: [embed],
-            })
-        }
+for (let i = 0; i < eventFiles.length; i++) {
+    const eventFile = path.join(eventPath, eventFiles[i]);
+    const event = require(eventFile) as Event<any>
+    if (!event.once) {
+        client.on(event.name, async (...args) => {
+            try {
+                event.execute(...args, client)
+            } catch (e) {
+                client.logger.error(e.message)
+            }
+        })
+    } else {
+        client.once(event.name, async (...args) => {
+            try {
+                event.execute(...args, client)
+            } catch (e) {
+                client.logger.error(e.message)
+            }
+        })
     }
-})
+
+}
 
 client.connect()
