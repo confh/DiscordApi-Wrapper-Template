@@ -12,7 +12,7 @@ module.exports = new Command({
 
         const embed = new EmbedBuilder()
             .setTitle("Poing")
-            .setDescription(`**Ping:** ${ping}ms`)
+            .setDescription(`**Ping:** \`${ping}ms\``)
             .setFooter({
                 text: client.user.displayName as string,
                 icon_url: client.user.getAvatarURL({ size: 1024 })
