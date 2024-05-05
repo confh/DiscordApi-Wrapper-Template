@@ -10,9 +10,9 @@ export default class CustomClient extends Client {
     public commands: Command[] = []
     public config = {
         colors: {
-            normal: 3224376,
-            error: 15548997,
-            success: 5763719
+            normal: "#313338",
+            error: "#ED4245",
+            success: "#57f287"
         }
     }
 
