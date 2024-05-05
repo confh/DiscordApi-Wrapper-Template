@@ -1,4 +1,4 @@
-import { EmbedBuilder, SlashCommandInteraction } from "../DiscordApiWrapper/types";
+import { SlashCommandInteraction, EmbedBuilder } from "@confis/discordapiwrapper";
 import CustomClient from "../classes/CustomClient";
 import Event from "../classes/Event";
 

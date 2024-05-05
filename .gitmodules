@@ -1,3 +1,0 @@
-[submodule "src/DiscordApiWrapper"]
-	path = src/DiscordApiWrapper
-	url = https://github.com/confh/DiscordApiWrapper.git

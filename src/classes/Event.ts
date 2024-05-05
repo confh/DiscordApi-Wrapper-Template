@@ -1,4 +1,4 @@
-import { ClientEvents } from "../DiscordApiWrapper/Client"
+import { ClientEvents } from "@confis/discordapiwrapper"
 
 export default class Event<K extends keyof ClientEvents> {
     name: K

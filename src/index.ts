@@ -3,7 +3,7 @@ require('dotenv').config()
 import path from "node:path"
 import fs from "node:fs"
 import Event from "./classes/Event"
-import { Intents } from "./DiscordApiWrapper/Client";
+import { Intents } from "@confis/discordapiwrapper";
 const logger = require("./logger")
 
 const client = new CustomClient(process.env.TOKEN as string, {

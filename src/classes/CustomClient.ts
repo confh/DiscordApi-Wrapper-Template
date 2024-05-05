@@ -1,8 +1,8 @@
-import Client from "../DiscordApiWrapper/Client"
 import Command from "./Command"
 import path from "node:path"
 import fs from "node:fs"
 import express from "express"
+import { Client } from "@confis/discordapiwrapper"
 const app = express()
 
 export default class CustomClient extends Client {

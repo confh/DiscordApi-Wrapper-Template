@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, EmbedBuilder } from "../DiscordApiWrapper/types";
+import { SlashCommandBuilder, EmbedBuilder } from "@confis/discordapiwrapper";
 import Command from "../classes/Command";
 
 module.exports = new Command({
