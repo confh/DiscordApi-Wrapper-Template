@@ -22,7 +22,7 @@ for (let i = 0; i < eventFiles.length; i++) {
     if (!event.once) {
         client.on(event.name, async (...args) => {
             try {
-                event.execute(...args, client)
+                event.execute(client, ...args)
             } catch (e) {
                 client.logger.error(e.message)
             }
@@ -30,7 +30,7 @@ for (let i = 0; i < eventFiles.length; i++) {
     } else {
         client.once(event.name, async (...args) => {
             try {
-                event.execute(...args, client)
+                event.execute(client, ...args)
             } catch (e) {
                 client.logger.error(e.message)
             }
