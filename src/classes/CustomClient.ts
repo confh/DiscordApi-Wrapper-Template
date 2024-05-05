@@ -120,7 +120,7 @@ export default class CustomClient extends Client {
         if (author?.length) {
             embed.setAuthor({
                 name: author,
-                icon_url: authorImage || undefined
+                icon_url: authorImage
             })
         }
 
@@ -129,7 +129,7 @@ export default class CustomClient extends Client {
         if (footer.length) {
             embed.setFooter({
                 text: `${footer}`,
-                icon_url: footerImage || undefined
+                icon_url: footerImage
             })
         }
 
@@ -142,7 +142,7 @@ export default class CustomClient extends Client {
         if (timestamp) embed.setTimestamp()
         if (url) embed.setURL(url)
 
-        let buttons = [
+        const buttons = [
             new ButtonBuilder()
                 .setCustomid('first_track')
                 .setStyle(ButtonStyles.SECONDARY)
@@ -152,33 +152,27 @@ export default class CustomClient extends Client {
                 .setCustomid('previous_track')
                 .setStyle(ButtonStyles.SECONDARY)
                 .setEmoji(emojis.previous_track),
-        ]
-
-        buttons.push(
             new ButtonBuilder()
                 .setCustomid('next_track')
                 .setStyle(ButtonStyles.SECONDARY)
-                .setEmoji(emojis.next_track)
-        )
+                .setEmoji(emojis.next_track),
 
-        buttons.push(
             new ButtonBuilder()
                 .setCustomid('last_track')
                 .setStyle(ButtonStyles.SECONDARY)
-                .setEmoji(emojis.last_track))
+                .setEmoji(emojis.last_track),
 
-        buttons.push(
             new ButtonBuilder()
                 .setCustomid('delete')
                 .setStyle(ButtonStyles.SECONDARY)
-                .setEmoji(emojis.delete))
-
-
+                .setEmoji(emojis.delete)
+        ]
 
         const row = new ActionRowBuilder()
             .setComponentsArray(
                 buttons
             )
+
 
         let message: Message;
 
