@@ -5,7 +5,7 @@ import Event from "../classes/Event";
 module.exports = new Event({
     name: "interactionCreate",
     once: false,
-    async execute(interaction, client: CustomClient) {
+    async execute(client, interaction) {
         if (interaction instanceof SlashCommandInteraction) {
             try {
                 const command = client.commands.find(a => a.data.toJson().name === interaction.name)
